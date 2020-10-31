@@ -3,6 +3,7 @@ isPresent=1
 PER_HOUR=20
 FULLDAY_HOUR=8
 PARTTIME_HOUR=8
+WORKINGDAYS_PERMONTH=20
 T=$(($RANDOM%8+1))
 
 echo "1. Employee Attendance 2.Daily Employee Wage 3.Part Time wage"
@@ -26,3 +27,6 @@ case $n in
 		echo "For $T hours wages are: $partTime"
 	;;
 esac
+
+monthlywage=$(( $PER_HOUR * $WORKINGDAYS_PERMONTH ))
+echo "Monthly Wages = $monthlywage"
