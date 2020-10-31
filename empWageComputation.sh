@@ -7,6 +7,7 @@ WORKINGDAYS_PERMONTH=20
 days=0
 working_hr=0
 empHr=0
+day_count=0
 T=$(($RANDOM%8+1))
 
 echo "1. Employee Attendance 2.Daily Employee Wage 3.Part Time wage"
@@ -35,7 +36,7 @@ getWorkHrs()
 {
 	monthlywage=$(( $PER_HOUR * $WORKINGDAYS_PERMONTH ))
 	echo "Monthly Wages = $monthlywage"
-	echo "Daily wages            Total wages   "
+	echo "Day          Daily wages            Total wages   "
 	while [[ $days -lt 20  &&  $working_hr -lt 100 ]]
 	do
 		empcheck=$(($RANDOM%2+1))
@@ -50,7 +51,8 @@ getWorkHrs()
 		salary=$(( $empHr * $PER_HOUR ))
 		total_sal=$(( $total_sal + $salary ))
 		((days++))
-		echo "$salary                      $total_sal"
+		((day_count++))
+		echo "$day_count            $salary                      $total_sal"
 	done
 }
 getWorkHrs
