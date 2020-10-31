@@ -31,22 +31,29 @@ case $n in
 	;;
 esac
 
+getWorkHrs()
+{
+	monthlywage=$(( $PER_HOUR * $WORKINGDAYS_PERMONTH ))
+	echo "Monthly Wages = $monthlywage"
+	echo "Daily wages            Total wages   "
+	while [[ $days -lt 20  &&  $working_hr -lt 100 ]]
+	do
+		empcheck=$(($RANDOM%2+1))
+		case $empcheck in
+		1)
+			empHr=$(( $empHr + 8 ))
+		;;
+		2)
+			empHr=$(( $empHr + 4 ))
+		;;
+		esac
+		salary=$(( $empHr * $PER_HOUR ))
+		total_sal=$(( $total_sal + $salary ))
+		((days++))
+		echo "$salary                      $total_sal"
+	done
+}
+getWorkHrs
 monthlywage=$(( $PER_HOUR * $WORKINGDAYS_PERMONTH ))
-echo "Monthly Wages = $monthlywage"
-echo "Daily wages            Total wages   "
-while [[ $days -lt 20  &&  $working_hr -lt 100 ]]
-do
-	empcheck=$(($RANDOM%2+1))
-	case $empcheck in
-	1)
-		empHr=$(( $empHr + 8 ))
-	;;
-	2)
-		empHr=$(( $empHr + 4 ))
-	;;
-	esac
-salary=$(( $empHr * $PER_HOUR ))
-total_sal=$(( $total_sal + $salary ))
-((days++))
-echo "$salary                      $total_sal"
-done
+echo "monthly wages are: $monthlywage"
+echo "Working hrs= $empHr"
